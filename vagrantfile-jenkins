@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "centos-base-03"
+
+  config.vm.host_name = 'jenkins.local'
+
+  config.vm.network :bridged , :adapter => 2
+  config.vm.network :hostonly, "192.168.10.10", :adapter => 3
+# config.vm.forward_port 80, 8080
+
+  config.vm.share_folder "v-modules"   , "/etc/puppet/modules"   , "./modules"
+  config.vm.share_folder "v-manifests" , "/etc/puppet/manifests" , "./manifests"
+
+end
+

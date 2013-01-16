@@ -1,0 +1,89 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+
+  # Every Vagrant virtual environment requires a box to build off of.
+# config.vm.box = "centos57"
+# config.vm.box_url = "http://dl.dropbox.com/u/52955229/centos-5.7-x86_64-minimal-1.box"
+
+  ###
+  ### Puppet Master
+  ###
+  config.vm.define :master do |srv|
+#   srv.vm.box = "centos57"
+#   srv.vm.box = "centos58-vboxadd"
+#   srv.vm.box = "centos62-base-03-4.1.22"
+    srv.vm.box = "centos62-base-03"
+    srv.vm.network :hostonly, "192.168.10.50"
+
+    srv.vm.host_name = 'master.local'
+
+    srv.vm.share_folder "v-modules"   , "/etc/puppet/modules"   , "./modules"
+    srv.vm.share_folder "v-manifests" , "/etc/puppet/manifests" , "./manifests"
+    srv.vm.share_folder "v-rpm"       , "/rpm"                  , "/work/devops/rpm-build/RPMS"
+
+#   srv.vm.boot_mode = :gui
+
+    # puppet script: set hostname
+#   srv.vm.provision :puppet do |puppet|
+#     puppet.manifests_path = "./modules/vagrant/manifests"
+#     puppet.manifest_file  = "set-hostname-master.pp"
+#   end
+
+    # puppet script: set hostname
+    srv.vm.provision :shell, :inline => "/bin/rm -f /etc/yum.repos.d/CentOS-Media.repo ; /usr/bin/puppet apply -e 'include base'"
+
+  end # master
+
+  ###
+  ### Puppet node1
+  ###
+  config.vm.define :node1 do |srv|
+
+    srv.vm.box = "centos62-base-03"
+
+    srv.vm.host_name = 'node1.local'
+  # srv.vm.boot_mode = :gui
+
+    srv.vm.network :hostonly, "192.168.10.51"
+
+    srv.vm.share_folder "v-modules"   , "/etc/puppet/modules"   , "./modules"
+    srv.vm.share_folder "v-manifests" , "/etc/puppet/manifests" , "./manifests"
+
+    srv.vm.provision :shell, :inline => "/bin/rm -f /etc/yum.repos.d/CentOS-Media.repo ; /usr/bin/puppet apply -e 'include base'"
+#   srv.vm.provision :shell, :inline => "/bin/rm -f /etc/yum.repos.d/CentOS-Media.repo ; /usr/bin/puppet apply -e 'include nagios::plugins'"
+
+    # puppet script: set hostname
+#   srv.vm.provision :puppet do |puppet|
+#     puppet.manifests_path = "./modules/vagrant/manifests"
+#     puppet.manifest_file  = "set-hostname-node1.pp"
+#   end
+
+  end # node1
+
+
+  ###
+  ### Jenkins
+  ###
+  config.vm.define :jenkins do |srv|
+
+    srv.vm.box = "centos62-base-03"
+
+    srv.vm.host_name = 'jenkins.local'
+  # srv.vm.boot_mode = :gui
+
+    srv.vm.network :hostonly, "192.168.10.51"
+
+    srv.vm.share_folder "v-modules"   , "/etc/puppet/modules"   , "./modules"
+    srv.vm.share_folder "v-manifests" , "/etc/puppet/manifests" , "./manifests"
+
+#   srv.vm.network :bridged , :adapter => 2
+    srv.vm.network :hostonly, "192.168.10.52", :adapter => 3
+#   srv.vm.forward_port 80, 8080
+
+
+  end # jenkins
+
+end
+

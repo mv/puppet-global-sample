@@ -1,0 +1,19 @@
+###
+### ATTENTION! ATTENTION! ATTENTION!
+###     This file is managed by Puppet.
+###     Any local modifications will be lost in the next puppet run.
+### ATTENTION! ATTENTION! ATTENTION!
+###
+
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+HOME=/
+
+# run-parts
+02 4 * * * root [ ! -f /etc/cron.hourly/0anacron ] && run-parts /etc/cron.daily
+22 4 * * 0 root [ ! -f /etc/cron.hourly/0anacron ] && run-parts /etc/cron.weekly
+42 4 1 * * root [ ! -f /etc/cron.hourly/0anacron ] && run-parts /etc/cron.monthly
+
+# vim:ft=crontab:
+

@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+
+  config.vm.box = "centos62-base-03-4.1.22"
+# config.vm.box = "centos62-base-03"
+
+  config.vm.host_name = 'master.local'
+
+  config.vm.share_folder "v-modules"   , "/etc/puppet/modules"   , "./modules"
+  config.vm.share_folder "v-manifests" , "/etc/puppet/manifests" , "./manifests"
+  config.vm.share_folder "v-rpm"       , "/rpm"                  , "/work/devops/rpm-build/RPMS"
+
+
+  config.vm.provision :shell, :inline => "/bin/rm -f /etc/yum.repos.d/CentOS-Media.repo ; /usr/bin/puppet apply -e 'include base'"
+
+end
+

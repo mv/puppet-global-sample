@@ -1,0 +1,9 @@
+
+http://linorg.usp.br/mysqlDownloads/MySQL-5.5/MySQL-client-5.5.21-1.rhel5.x86_64.rpm        
+http://linorg.usp.br/mysqlDownloads/MySQL-5.5/MySQL-server-5.5.21-1.rhel5.x86_64.rpm        
+http://linorg.usp.br/mysqlDownloads/MySQL-5.5/MySQL-devel-5.5.21-1.rhel5.x86_64.rpm         
+http://linorg.usp.br/mysqlDownloads/MySQL-5.5/MySQL-shared-5.5.21-1.rhel5.x86_64.rpm        
+http://linorg.usp.br/mysqlDownloads/MySQL-5.5/MySQL-shared-compat-5.5.21-1.rhel5.x86_64.rpm 
+http://linorg.usp.br/mysqlDownloads/MySQL-5.5/MySQL-embedded-5.5.21-1.rhel5.x86_64.rpm      
+http://linorg.usp.br/mysqlDownloads/MySQL-5.5/MySQL-test-5.5.21-1.rhel5.x86_64.rpm          
+

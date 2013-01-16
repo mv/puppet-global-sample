@@ -1,0 +1,16 @@
+
+[1;34mEdenBrasil[0;38m - [1;32mhttp://www.edenbrasil.com.br[0;38m
+
+[1;35mCentOS 6.2 x86_64[0;38m: [1;31m{host}[0;38m
+
+This machine is managed by [1;36m
+    ________                            _____
+    ___  __ \___  ________________________  /_
+    __  /_/ /  / / /__  __ \__  __ \  _ \  __/
+    _  ____// /_/ /__  /_/ /_  /_/ /  __/ /_
+    /_/     \__,_/ _  .___/_  .___/\___/\__/
+                   /_/     /_/
+[0m
+Any local modifications will be [1;35mlost[0m after
+the next puppet run.
+

@@ -1,0 +1,17 @@
+###
+### ATTENTION! ATTENTION! ATTENTION!
+###     This file is managed by Puppet.
+###     Any local modifications will be lost in the next puppet run.
+### ATTENTION! ATTENTION! ATTENTION!
+###
+
+*filter
+:INPUT ACCEPT [101657:11696793]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [9279:1099753]
+-A INPUT -p tcp -m tcp --dport 22 -m state --state NEW -m recent --update --seconds 60 --hitcount 20 --name DEFAULT --rsource -j DROP
+-A INPUT -p tcp -m tcp --dport 22 -m state --state NEW -m recent --set --name DEFAULT --rsource
+COMMIT
+
+# vim:ft=iptables
+

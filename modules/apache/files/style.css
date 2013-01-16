@@ -1,0 +1,121 @@
+
+html {
+#   filter: expression(document.execCommand("BackgroundImageCache", false, true));
+    margin: 0;
+    padding: 0;
+#   background:#e7e7e7
+    background:#c0c0c0
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-size: 82.5%;
+    color: #111;
+}
+h1 {
+    font-weight:normal;
+    margin:0;
+    padding:5px 0;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+h2 {
+    font-weight:normal;
+    margin:0;
+    padding:5px 0;
+    font-size:.9em;
+    color: #444444;
+    width:97.2%;
+    background:#ddd; margin-left:10px; color:#444;
+}
+h2 > span{ margin-left:10px}
+a,
+a:visited {
+    text-decoration: none;
+    color: #111;
+}
+a:hover {
+    text-decoration: underline;
+}
+h2 a {
+    color: #667799 !important;
+}
+img {
+    border: none;
+}
+div#files {
+    margin: 0 auto 0 auto;
+    width: 100%;
+    margin:0 auto;
+    font-size:.83em;
+}
+
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 40px auto;
+}
+table tr {
+    padding: 10px 0;
+    margin: 0;
+}
+table th{
+    font-size:1.0em;
+    border-bottom:1px solid #ccc;
+    margin-bottom:15px !important
+    padding:0;
+    margin: 0;
+    text-align: left;
+}
+table td {
+    border: none;
+    border-bottom: 1px solid #FFFFFF;
+#   text-align: right;
+    text-align: left;
+    padding: 1px 0 1px 0;
+}
+table td.name {
+    text-align: left;
+}
+table tr.hover td {
+    border-bottom: 1px dashed #CCCC99;
+}
+table th.icon {
+    width: 16px;
+    height: 16px;
+    padding-right: 5px;
+}
+table th.date {
+    text-align: right;
+    width: 180px;
+}
+table th.size {
+    text-align: right;
+    width: 80px;
+}
+table hr {
+    display: none;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+

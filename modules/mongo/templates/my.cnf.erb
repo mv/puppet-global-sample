@@ -1,0 +1,178 @@
+#
+# <%= hostname %>
+#
+
+[mongod_safe]
+
+pid-file=/mongo/<%= hostname %>.pid
+
+###
+### Error log
+###
+log-error=/mongo/logs/<%= hostname %>-error.log
+
+
+[mongod]
+user=mongo
+
+##################################################
+### install dirs
+##################################################
+# basedir=/
+datadir=/mongo/data
+pid-file=/mongo/<%= hostname %>.pid
+
+##################################################
+### Force server time_zone
+##################################################
+# default-time-zone='America/Sao_Paulo'
+
+##################################################
+### Storage
+##################################################
+default-storage-engine=InnoDB
+
+# Tablespaces
+innodb_data_file_path=ibdata1:50M;ibdata2:50M:autoextend
+#innodb_autoextend_increment=10240
+
+# One innodb file for each table
+innodb_file_per_table
+
+# Flush rate Default: 90%
+innodb_max_dirty_pages_pct=90
+
+# Recover, if needed: 1 a 6. Default=0
+innodb_force_recovery=0
+
+# Online REDO Log
+innodb_log_file_size=128M
+innodb_log_files_in_group=4
+
+##################################################
+### Network
+##################################################
+
+# bind=<%= ipaddress %>
+port=3306
+socket=/mongo/mongo.sock
+
+# IP only
+skip-name-resolve
+interactive_timeout=80
+
+# Replication: 1 - 1024
+server-id=31
+
+# session network transfer size
+max-allowed-packet=20M
+
+##################################################
+### Process
+##################################################
+max_connections=500
+thread_cache_size=20
+
+##################################################
+### Mem
+##################################################
+
+### Global / instance
+
+table_open_cache = 2048
+
+max_heap_table_size = 64M
+
+## Query Cache / SQL Buffer Pool
+#     stats: show global status like 'Qcache_%'
+query_cache_type = 1
+query_cache_size = 32M
+
+# SQL text sizes inside query cache
+query_cache_limit = 1M
+query_cache_min_res_unit = 4096
+
+# MyIsam Indexes only
+#     stat: 1 - (key_reads / key_read_requests)
+key_buffer_size=64M
+
+# Innodb
+innodb_buffer_pool_size = 64M
+innodb_log_buffer_size = 16M
+
+
+### Sessions, i.e, for each session
+read_buffer_size = 16M
+read_rnd_buffer_size = 16M
+sort_buffer_size = 4M
+join_buffer_size = 16M
+
+
+##################################################
+### Logs
+##################################################
+
+###
+### General
+### All comands / Audit
+###     Tip: save into myisam table, for later use. Default=csv table.
+###
+general-log=1
+general-log-file=/mongo/logs/<%= hostname %>.log
+
+###
+### Slow
+###     set @@global.slow_query_log_file='/home/aluno/mongo/logs/slow2.log';
+###
+slow-query-log=1
+slow-query-log-file=/mongo/logs/<%= hostname %>-slow.log
+
+log-queries-not-using-index
+
+# log when query time > 'x' secs. Default=10s
+long_query_time=2
+
+###
+### Binary log: Replication/Redo, i.e., archive log
+###
+log-bin=/mongo/binlog/<%= hostname %>-bin
+
+# size:
+max_binlog_size=100M
+
+# auto-rotate:
+expire_logs_days=3
+
+# server decide between row/statement:
+binlog_format=mixed
+
+# Inoodb + transactions: greatest possible durability and consistency
+innodb_flush_log_at_trx_commit=1
+sync_binlog=1
+
+##################################################
+### Fulltext
+##################################################
+# ft_min_world_len=3
+# ft_stop_word_file='/path/file.txt'
+
+
+##################################################
+### Others
+##################################################
+
+# init-connect="SET AUTOCOMMIT=ON"
+# init-file=/home/aluno/work/mongo-init-file.sql
+
+transaction-isolation='READ-COMMITTED'
+
+# IGNORE_SPACE: spaces between function_name and '()'
+# sql-mode='ANSI,TRADITIONAL,IGNORE_SPACE'
+
+## skip-grant-tables
+## skip-networking
+
+
+# vim:ft=conf:
+
+

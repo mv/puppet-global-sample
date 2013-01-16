@@ -1,0 +1,36 @@
+
+
+
+puppet.conf
+
+[main]
+
+[master]
+
+[agent]
+
+[user]
+
+
+-name = agent
++name = apply
+
+-pidfile = /var/lib/puppet/run/agent.pid
++pidfile = /var/lib/puppet/run/apply.pid
+
+-run_mode = agent
++run_mode = user
+
+
+
+    # An external command that can produce node information.  The output
+    # must be a YAML dump of a hash, and that hash must have one or both of
+    # `classes` and `parameters`, where `classes` is an array and
+    # `parameters` is a hash.  For unknown nodes, the commands should
+    # exit with a non-zero exit code.
+    # This command makes it straightforward to store your node mapping
+    # information in other data sources like databases.
+    # The default value is 'none'.
+    external_nodes = none
+
+

@@ -1,0 +1,19 @@
+
+###
+### ATTENTION! ATTENTION! ATTENTION!
+###     This file is managed by Puppet.
+###     Any local modifications will be lost in the next puppet run.
+### ATTENTION! ATTENTION! ATTENTION!
+###
+
+/var/log/redis/redis.log {
+    weekly
+    rotate 10
+    copytruncate
+    delaycompress
+    compress
+    notifempty
+    missingok
+}
+
+
